@@ -1,0 +1,109 @@
+/* eslint-disable no-unused-vars */
+import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode } from 'swiper';
+import TopChartCard from './TopChartCard';
+import PlayPause from './PlayPause';
+import { setActiveSong, playPause } from '../redux/features/playerSlice';
+// eslint-disable-next-line import/no-unresolved
+import 'swiper/css';
+// eslint-disable-next-line import/no-unresolved
+import 'swiper/css/free-mode';
+
+// const TopChartCard = ({ data, id }) =>
+//   // eslint-disable-next-line no-console
+//   // console.log('Bhavey - ', data);
+//   // eslint-disable-next-line implicit-arrow-linebreak
+//   (
+//     <div className="w-full flex flex-row items-center py-2 p-4 rounded-lg cursor-pointer mb-2 hover:bg-[#4c426e]">
+//       <h3 className="font-bold text-base text-white mr-3">{id + 1}.</h3>
+//       <div className="flex flex-1 flex-row justify-between items-center">
+//         <img src={data.images[2].url} alt="" className="w-12 h-12 rounded-lg" />
+//         <div className="flex flex-1 flex-col justify-center mx-3">
+//           <Link to={`/songs/${data.id}`}>
+//             <p className="text-l font-bold text-white">{data.name}</p>
+//           </Link>
+//           <Link to={`/artists/${data.artists[0].id}`}>
+//             <p className="text-base text-gray-300 mt-1">{data.artists[0].name}</p>
+//           </Link>
+//         </div>
+//       </div>
+//       <PlayPause />
+//     </div>
+//   );
+const TopPlay = (data, spotify) => {
+  const dispatch = useDispatch();
+  const { activeSong, isPlaying } = useSelector((state) => state.player);
+  const divRef = useRef(null);
+  // eslint-disable-next-line no-console
+  // console.log((data));
+  const dataArray = Object.values(data)[0];
+  const artist = Object.values(data)[1];
+  // eslint-disable-next-line no-console
+  // console.log((dataArray));
+
+  useEffect(() => {
+    divRef.current.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
+  // const topPlays = data?.slice(0, 5);
+
+  const handlePauseClick = () => {
+    dispatch(playPause(false));
+  };
+  const handlePlayClick = () => {
+    // dispatch(setActiveSong({ song, data, id }));
+    dispatch(playPause(true));
+  };
+  return (
+    <div ref={divRef} className="xl:ml-6 ml-0 xl:mb-0 mb-6 flex-1 mt-5 xl:max-w-[500px] max-w-full flex flex-col">
+      <div className="w-full flex flex-col">
+        <div className="flex flex-row justify-between">
+          <h2 className="text-white font-bold">Top Albums</h2>
+          {/* <Link to="/top-charts">
+            <p className="text-gray-300 text-base cursor-pointer">See More</p>
+          </Link> */}
+        </div>
+
+        <div className="mt-4 flex flex-4 gap-1 flex-col">
+          {dataArray.slice(0, 5).map((song, id) => (
+            <TopChartCard data={song} id={id} key={id} spotify={spotify} />
+          ))}
+        </div>
+      </div>
+      <div className="w-full flex flex-col mt-8">
+        <div className="flex flex-row justify-between">
+          <h2 className="text-white font-bold">Top Artists</h2>
+          <Link to="/top-artists">
+            <p className="text-gray-300 text-base cursor-pointer">See More</p>
+          </Link>
+        </div>
+        <Swiper
+          slidesPerView="auto"
+          spaceBetween={10}
+          freeMode
+          centeredSlides
+          centeredSlidesBounds
+          modules={[FreeMode]}
+          className="mt-4"
+        >
+          {artist.map((song, id) => (
+            <SwiperSlide
+              key={id}
+              style={{ width: '25%', height: 'auto' }}
+              className="rounded-full animate-slideright"
+            >
+              <Link to={`/artists/${song.id}`}>
+                <img src={song.images[0].url} alt="" className="rounded-full w-[100px] h-[100px] object-cover" />
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </div>
+  );
+};
+
+export default TopPlay;
