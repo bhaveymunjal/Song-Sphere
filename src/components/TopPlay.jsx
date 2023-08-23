@@ -12,27 +12,6 @@ import 'swiper/css';
 // eslint-disable-next-line import/no-unresolved
 import 'swiper/css/free-mode';
 
-// const TopChartCard = ({ data, id }) =>
-//   // eslint-disable-next-line no-console
-//   // console.log('Bhavey - ', data);
-//   // eslint-disable-next-line implicit-arrow-linebreak
-//   (
-//     <div className="w-full flex flex-row items-center py-2 p-4 rounded-lg cursor-pointer mb-2 hover:bg-[#4c426e]">
-//       <h3 className="font-bold text-base text-white mr-3">{id + 1}.</h3>
-//       <div className="flex flex-1 flex-row justify-between items-center">
-//         <img src={data.images[2].url} alt="" className="w-12 h-12 rounded-lg" />
-//         <div className="flex flex-1 flex-col justify-center mx-3">
-//           <Link to={`/songs/${data.id}`}>
-//             <p className="text-l font-bold text-white">{data.name}</p>
-//           </Link>
-//           <Link to={`/artists/${data.artists[0].id}`}>
-//             <p className="text-base text-gray-300 mt-1">{data.artists[0].name}</p>
-//           </Link>
-//         </div>
-//       </div>
-//       <PlayPause />
-//     </div>
-//   );
 const TopPlay = (data, spotify) => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
@@ -48,13 +27,10 @@ const TopPlay = (data, spotify) => {
     divRef.current.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
-  // const topPlays = data?.slice(0, 5);
-
   const handlePauseClick = () => {
     dispatch(playPause(false));
   };
   const handlePlayClick = () => {
-    // dispatch(setActiveSong({ song, data, id }));
     dispatch(playPause(true));
   };
   return (
@@ -62,9 +38,6 @@ const TopPlay = (data, spotify) => {
       <div className="w-full flex flex-col">
         <div className="flex flex-row justify-between">
           <h2 className="text-white font-bold">Top Albums</h2>
-          {/* <Link to="/top-charts">
-            <p className="text-gray-300 text-base cursor-pointer">See More</p>
-          </Link> */}
         </div>
 
         <div className="mt-4 flex flex-4 gap-1 flex-col">

@@ -3,7 +3,6 @@ import React, {useState, useEffect} from 'react';
 import { useDataLayerValue } from '../../DataLayer';
 
 const Seekbar = ({ value, min, max, onInput, setSeekTime, appTime, setAppTime }) => {
-  // converts the time to format 0:00
   const formatTime = (timeInMilliseconds) => {
     const totalSeconds = Math.floor(timeInMilliseconds / 1000);
     const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');

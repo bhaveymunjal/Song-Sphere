@@ -10,10 +10,6 @@ const PlayPause = ({ spotify, context_ur, track_num }) => {
   // () => playTrack(data.track.uri, data.track.track_number)
   const [{ token }, dispatch] = useDataLayerValue();
   const playTrack = async (
-    // id,
-    // name,
-    // artists,
-    // image,
     context_uri,
     track_number,
   ) => {

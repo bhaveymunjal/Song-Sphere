@@ -1,20 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-// const options = {
-//   method: 'GET',
-//   headers: {
-//     'X-RapidAPI-Key': '624c562197mshe67d94e2a5f618bp1ef688jsn0670558aad02',
-//     'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
-//   },
-// };
-
-// fetch('https://spotify23.p.rapidapi.com/artists/?id=2w9zwq3AktTeYYMuhMjju8', options)
-//   .then((response) => response.json())
-//   // eslint-disable-next-line no-console
-//   .then((response) => console.log(response))
-//   // eslint-disable-next-line no-console
-//   .catch((err) => console.error(err));
-
 export const SpotifyAPI = createApi({
   reducerPath: 'SpotifyAPI',
   baseQuery: fetchBaseQuery({
