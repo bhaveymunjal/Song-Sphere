@@ -1,33 +1,43 @@
+/* eslint-disable no-console */
+/* eslint-disable consistent-return */
 /* eslint-disable no-unused-vars */
-import React, {useState, useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useDataLayerValue } from '../../DataLayer';
 
-const Seekbar = ({ value, min, max, onInput, setSeekTime, appTime, setAppTime }) => {
+const Seekbar = ({ value, min, max, onInput, setSeekTime, appTime, setAppTime, spotify }) => {
   const formatTime = (timeInMilliseconds) => {
     const totalSeconds = Math.floor(timeInMilliseconds / 1000);
     const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0');
     const seconds = (totalSeconds % 60).toString().padStart(2, '0');
     return `${minutes}:${seconds}`;
   };
-  const [{ token, playerState, item, time }, dispatch] = useDataLayerValue();
-  const [duration, setDuration] = useState(0);
+  const [{ token, playerState, item, time, duration }, dispatch] = useDataLayerValue();
+  const fetchItem = async () => {
+    await spotify.getMyCurrentPlayingTrack().then((r) => {
+      dispatch({
+        type: 'SET_PLAYER_STATE',
+        playerState: true,
+      });
+      dispatch({
+        type: 'SET_ITEM',
+        item: r.item,
+      });
+      dispatch({
+        type: 'SET_TIME',
+        time: r.progress_ms,
+      });
+      dispatch({
+        type: 'SET_DURATION',
+        duration: r.item.duration_ms,
+      });
+    });
+  };
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (playerState && item) {
-        setAppTime(parseInt((time / item.duration_ms) * 100, 10));
-      }
-    }, 1000);
-
-    // return () => clearInterval(interval);
-  }, 1000);
-  useEffect(() => {
-    if (item) {
-      setDuration(item.duration_ms);
-    }
-  }, 1000);
+    fetchItem();
+  }, []);
   return (
     <div className="hidden sm:flex flex-row items-center">
-      <p className="text-white">{value === 0 ? '0:00' : formatTime(time)}</p>
+      <p className="text-white">{formatTime(time)}</p>
       <input
         type="range"
         step="any"

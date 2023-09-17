@@ -4,7 +4,6 @@ import { logo } from '../assets';
 import { loginUrl } from '../redux/services/Sp';
 
 export default function HomePage() {
-  // const [login, setLogin] = useState(false);
   return (
     <div className="h-screen w-screen flex items-center justify-center bg-[#191624]">
       <div className="text-center ">

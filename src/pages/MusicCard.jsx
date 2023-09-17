@@ -13,6 +13,7 @@ const MusicCard = ({ image, songName, duration, artistName, artistId, spotify, c
           spotify={spotify}
           context_ur={context_ur}
           track_num={track_num}
+          duration={duration}
         />
       </div>
       <img src={image} alt="" />

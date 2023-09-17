@@ -19,8 +19,6 @@ const VolumeBar = ({ value, min, max, setVolumeBar }) => {
         },
       },
     );
-    // eslint-disable-next-line no-console
-    // console.log(e);
   };
   return (
     <div className="hidden lg:flex flex-1 items-center justify-end">

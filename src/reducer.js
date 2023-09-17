@@ -17,8 +17,6 @@ export const initialState = {
 };
 
 const reducer = (state, action) => {
-  // eslint-disable-next-line no-console
-  // console.log(action);
   switch (action.type) {
     case 'SET_USER':
       return {
@@ -59,6 +57,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         item: action.item,
+      };
+    case 'SET_DURATION':
+      return {
+        ...state,
+        duration: action.duration,
       };
     case 'SET_PLAYER_STATE':
       return {

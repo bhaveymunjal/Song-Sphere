@@ -1,6 +1,5 @@
 import React from 'react';
 
-// const DetailsHeader = ({ artistId, artistData, songData, imgURL, name, genres }) => (
 const DetailsHeader = ({ imgURL, name, genres, followers }) => (
   <div className="relative w-full flex flex-col">
     <div className="w-full bg-gradient-to-l from-transparent to-black sm:h-48 h-28" />

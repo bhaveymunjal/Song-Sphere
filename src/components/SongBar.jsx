@@ -10,8 +10,6 @@ const formatDuration = (ms) => {
 };
 
 const SongBar = ({ song, i, activeSong, spotify }) => {
-  // eslint-disable-next-line no-console
-  // console.log('Song Details of 5 top charts from page SongBar', song);
   return (
     <div className={`w-full flex flex-row items-center hover:bg-[#4c426e] ${activeSong === song ? 'bg-[#4c426e]' : 'bg-transparent'} py-2 p-4 rounded-lg cursor-pointer mb-2`}>
       <h3 className="font-bold text-base text-white mr-3">{i + 1}.</h3>
@@ -34,6 +32,7 @@ const SongBar = ({ song, i, activeSong, spotify }) => {
         context_ur={song.album.uri}
         track_num={song.track_number}
         spotify={spotify}
+        duration={song.duration_ms}
       />
     </div>
   );

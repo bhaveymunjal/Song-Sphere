@@ -2,21 +2,31 @@
 import React, { useEffect } from 'react';
 import { useDataLayerValue } from '../../DataLayer';
 
-const Track = ({ isPlaying, isActive, activeSong, name, imgUrl, artists, spotify }) => {
+const Track = ({ spotify }) => {
   const [{ token, item, playerState }, dispatch] = useDataLayerValue();
   useEffect(() => {
     const fetchItem = async () => {
-      const r = await spotify.getMyCurrentPlayingTrack();
-      dispatch({
-        type: 'SET_ITEM',
-        item: r.item,
+      await spotify.getMyCurrentPlayingTrack().then((r) => {
+        dispatch({
+          type: 'SET_PLAYER_STATE',
+          playerState: true,
+        });
+        dispatch({
+          type: 'SET_ITEM',
+          item: r.item,
+        });
+        dispatch({
+          type: 'SET_TIME',
+          time: r.progress_ms,
+        });
+        dispatch({
+          type: 'SET_DURATION',
+          duration: r.item.duration_ms,
+        });
       });
     };
-
     fetchItem();
-  }, [playerState]);
-  // eslint-disable-next-line no-console
-  // console.log('current playing value from track component', currentPlaying);
+  }, []);
   return (
     <div className="flex-1 flex items-center justify-start">
       <div className={`${playerState} ? animate-[spin_3s_linear_infinite] :hidden sm:block h-16 w-16 mr-4`}>

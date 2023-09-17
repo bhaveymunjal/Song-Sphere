@@ -1,30 +1,18 @@
+/* eslint-disable no-console */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import PlayPause from './PlayPause';
-import { playPause, setActiveSong } from '../redux/features/playerSlice';
 
-// const SongCard = ({ activeSong, isPlaying, song, id, data }) => {
 const SongCard = ({ data, id, spotify }) => {
-  // eslint-disable-next-line no-console
-  // console.log(data.added_at);
-  // eslint-disable-next-line no-console
-  // console.log('Entire item - ', data);
-  // eslint-disable-next-line no-console
-  // console.log('Entire data - ', song);
   const dispatch = useDispatch();
-  // eslint-disable-next-line no-console
-  // console.log('Data from SongCard', data);
   return (
     <div className="flex flex-col w-[200px] p-4 bg-white/5 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg ">
       <div className="relative w-full h-50 group">
-        {/* <div className="absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex "> */}
         <div className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${spotify === data ? 'flex bg-black bg-opacity-70' : 'hidden'} `}>
           <PlayPause
-            // isPlaying={isPlaying}
-            // activeSong={activeSong}
             data={data}
             spotify={spotify}
             context_ur={data.track.album.uri}

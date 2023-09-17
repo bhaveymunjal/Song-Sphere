@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 import PlayPause from './PlayPause';
 
 const TopChartCard = ({ data, id, spotify }) => {
-  // eslint-disable-next-line no-console
-  // console.log('Top chart card page - ', data);
   return (
     <div className="w-full flex flex-row items-center py-2 p-4 rounded-lg cursor-pointer mb-2 hover:bg-[#4c426e]">
       <h3 className="font-bold text-base text-white mr-3">{id + 1}.</h3>

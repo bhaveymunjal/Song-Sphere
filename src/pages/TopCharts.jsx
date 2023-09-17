@@ -56,8 +56,6 @@ const AroundYou = (spotify) => {
   if (topTracks.length === 0) {
     return <div><Loader /></div>;
   }
-  // eslint-disable-next-line no-console
-  console.log(topTracks);
   return (
     <div className="flex flex-col mt-5 ">
       <h2 className="font-bold text-3xl mb-2 text-left text-white">
