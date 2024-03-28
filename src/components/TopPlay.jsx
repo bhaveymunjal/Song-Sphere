@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper';
 import TopChartCard from './TopChartCard';
 import PlayPause from './PlayPause';
-import { setActiveSong, playPause } from '../redux/features/playerSlice';
 // eslint-disable-next-line import/no-unresolved
 import 'swiper/css';
 // eslint-disable-next-line import/no-unresolved
@@ -27,12 +26,6 @@ const TopPlay = (data, spotify) => {
     divRef.current.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
-  const handlePauseClick = () => {
-    dispatch(playPause(false));
-  };
-  const handlePlayClick = () => {
-    dispatch(playPause(true));
-  };
   return (
     <div ref={divRef} className="xl:ml-6 ml-0 xl:mb-0 mb-6 flex-1 mt-5 xl:max-w-[500px] max-w-full flex flex-col">
       <div className="w-full flex flex-col">

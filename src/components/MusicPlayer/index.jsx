@@ -4,9 +4,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import axios from 'axios';
-import { Grid, Slider } from '@material-ui/core';
-import { nextSong, prevSong, playPause } from '../../redux/features/playerSlice';
 import Controls from './Controls';
 // import Player from './Player';
 import Seekbar from './Seekbar';

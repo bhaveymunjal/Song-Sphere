@@ -2,7 +2,7 @@
 import React from 'react';
 import { ArtistCard } from '../components';
 
-const TopArtists = ({relatedArtist}) => {
+const TopArtists = ({ relatedArtist }) => {
   // eslint-disable-next-line no-console, react/destructuring-assignment
 //   console.log('we are printing related artists from here now', relatedArtist.relatedArtist);
   const capitalizeFirstLetter = (string) => string.replace(/\b\w/g, (match) => match.toUpperCase());

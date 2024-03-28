@@ -6,7 +6,6 @@ export const initialState = {
   artists: [],
   item: null,
   devices: null,
-  // token: 'BQAMhitb9o6FQwtJYhn1MabEPZSrsn9bR404qwRTlxRekPxcki8AeNLcVXF3CsAa0MZqigM28YpEiKcGDsM24GO47D4sndJTDOaezaX_qU5WBY3wXd3ZMoFE_PQMrl84ysH9jXTvr6Df-QbO_41d1jSXcmAaaI5B7s1JhiFmgVMSaRDCQgGm3b3r2KJdHfhPgsb9x4XRWNJHUrjDYnig',
   token: null,
   releases: [],
   CurrentlyPlaying: null,

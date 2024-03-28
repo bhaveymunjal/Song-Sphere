@@ -17,12 +17,10 @@ import { useDataLayerValue } from './DataLayer';
 
 const spotify = new SpotifyWebApi();
 const App = () => {
-  const { activeSong } = useSelector((state) => state.player);
   const [{ token, playlists, releases, artists, relatedArtist, CurrentlyPlaying }, dispatch] = useDataLayerValue();
   useEffect(() => {
     const hash = getTokenFromUrl();
     window.location.hash = '';
-    // const _token = 'BQBK6egLOqCq_X1dLjAeJzR1HmaToSdb05UtJdxtwqIohyQKSj38smTJw_aGOU7obopsVHx2a0OBFEuiMzxfGEUUPPrOeLkaGgKX54j_FSc_epZwzpxqnwZY1wD9svZ1Ta2YH0aF1-tjF9OeVQI0HkBFJ-y-zfUNH35_4g6KUkC2tXkvSMRSDJLiV_iIktpYSduawXS2LvOL5QUdQ2UzgwiDOg3Fse5QNN6Dtq2o';
     const _token = hash.access_token;
     if (_token) {
       dispatch({
@@ -85,8 +83,8 @@ const App = () => {
       {token && (
       <div className="relative flex">
         <Sidebar />
-        <div className="flex-1 flex flex-col bg-gradient-to-br from-black to-[#121286]">
-          <div className="px-6 h-[calc(100vh)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
+        <div className="h-screen flex-1 flex flex-col bg-gradient-to-br from-black to-[#121286]">
+          <div className="px-6 overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse">
             <div className="flex-1 h-fit ">
               <Routes>
                 <Route path="/" element={<Discover data={playlists} spotify={spotify} />} />
@@ -95,14 +93,14 @@ const App = () => {
                 <Route path="/artists/:id" element={<ArtistDetails artists={artists} spotify={spotify} />} />
               </Routes>
             </div>
-            <div className="xl:sticky relative top-0 h-fit ">
+            <div className="xl:sticky relative top-0 h-fit">
               <TopPlay data={releases} singer={artists} />
             </div>
           </div>
         </div>
-        <div className="fixed p-5 bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#2a2a80] backdrop-blur-lg rounded-t-3xl z-10">
+        {/* <div className="h-[14vh] fixed p-5 bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#2a2a80] backdrop-blur-lg z-10">
           <MusicPlayer CurrentPlaying={CurrentlyPlaying} spotify={spotify} />
-        </div>
+        </div> */}
       </div>
       )}
     </>

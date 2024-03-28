@@ -1,5 +1,5 @@
 
-const CLIENT_ID = '18086d02e421432eb598af7bc154e249';
+const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const REDIRECT_URL = 'http://localhost:3000/';
 export const AUTH_ENDPOINT = 'https://accounts.spotify.com/authorize';
 const RESPONSE_TYPE = 'token';
