@@ -48,7 +48,7 @@ To run this application locally, follow these steps:
 - React.js
 - Spotify API
 - HTML5
-- CSS3
+- Tailwind CSS
 - JavaScript
 
 ## Feedback and Support
